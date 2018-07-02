@@ -49,5 +49,5 @@ dependencies {
 	compile("org.jetbrains.kotlin:kotlin-reflect")
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile("org.springframework.boot:spring-boot-devtools")
+//	compile("org.springframework.boot:spring-boot-devtools")
 }
