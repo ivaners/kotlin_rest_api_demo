@@ -1,7 +1,7 @@
 package com.example.demo.Security
 
-import com.example.demo.AuthFilter
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -19,6 +19,22 @@ open class WebSecurityConfig : WebSecurityConfigurerAdapter() {
         http.addFilterBefore(AuthFilter(authenticationManager()), BasicAuthenticationFilter::class.java)
     }
 
+    @Autowired
+    open fun configureGlobal(auth: AuthenticationManagerBuilder) {
+        /*auth.inMemoryAuthentication().withUser("user").password("password").roles("USER")*/
+        auth.authenticationProvider(DomainUPAuthProvider(tokenService(), getConfig()))
+                .authenticationProvider(TokenAuthenticationProvider(tokenService()))
+    }
 
+
+    @Bean
+    fun tokenService(): TokenService {
+        return TokenService()
+    }
+
+    @Bean
+    fun getConfig(): ConfigInfo {
+        return ConfigInfo()
+    }
 
 }

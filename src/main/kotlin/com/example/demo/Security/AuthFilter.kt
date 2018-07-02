@@ -1,5 +1,6 @@
-package com.example.demo
+package com.example.demo.Security
 
+import com.example.demo.ApiDomain
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -43,8 +44,7 @@ class AuthFilter : OncePerRequestFilter {
             val resultOfAuthentication = tryToAuthenticate(requestAuthentication, response)
             SecurityContextHolder.getContext().setAuthentication(requestAuthentication)
             if (resultOfAuthentication != null) {
-//                val token = resultOfAuthentication.getDetails().toString()
-                val token = "MTUzMDE0OTI5NDE5M2RmMGUyNmE1ODUyNTQ3YTFhNDgwMWJhN2U2ZDIzOGMx"
+                val token = resultOfAuthentication.getDetails().toString()
                 echo(200, response, token)
             }
             return

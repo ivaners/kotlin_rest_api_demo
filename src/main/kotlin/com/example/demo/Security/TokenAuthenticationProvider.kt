@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.Security
 
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
@@ -7,9 +7,9 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 
 class TokenAuthenticationProvider :AuthenticationProvider {
 
-    var tokenService:TokenService
+    var tokenService: TokenService
 
-    constructor(tokenService:TokenService) {
+    constructor(tokenService: TokenService) {
         this.tokenService = tokenService
     }
 
