@@ -6,11 +6,11 @@ import com.example.demo.Entity.Student
 import com.example.demo.Entity.StudentRepository
 
 @RestController
-class CustomerController
+class CustomerController : BaseController()
 {
     @Autowired
     lateinit var studentRepository: StudentRepository
-    @RequestMapping("/")
+    @RequestMapping("get")
     fun index(name: String):List<Student>{
         return studentRepository.findByName(name)
     }
