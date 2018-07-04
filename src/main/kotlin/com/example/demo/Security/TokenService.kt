@@ -16,8 +16,6 @@ class TokenService {
 
     val expiryQueue = DelayQueue<TokenExpiry>()
 
-
-    val logger = org.slf4j.LoggerFactory.getLogger("tokenService")
     val tokens = hashMapOf<String, Authentication>()
     val users = hashMapOf<String, String>()
     fun generateNewToken(): String {
