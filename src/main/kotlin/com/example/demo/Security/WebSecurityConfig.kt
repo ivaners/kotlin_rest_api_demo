@@ -10,8 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import com.example.demo.Security.service.JwtUserDetailsService
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.authentication.AuthenticationManager
+
+
 
 
 
@@ -21,6 +25,13 @@ import org.springframework.security.crypto.password.PasswordEncoder
 open class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     @Autowired
     private val jwtUserDetailsService: JwtUserDetailsService? = null
+
+    @Value("\${jwt.header}")
+    private val tokenHeader: String? = null
+
+    @Value("\${jwt.route.authentication.path}")
+    private val authenticationPath: String? = null
+
 
     override fun configure(http: HttpSecurity) {
 		http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic()
@@ -39,6 +50,12 @@ open class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     @Bean
     fun passwordEncoderBean(): PasswordEncoder {
         return BCryptPasswordEncoder()
+    }
+
+    @Bean
+    @Throws(Exception::class)
+    override fun authenticationManagerBean(): AuthenticationManager {
+        return super.authenticationManagerBean()
     }
 
     @Bean
