@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.*
 
 
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
-@RequestMapping(value = ApiDomain.HOST_PATH + "/custom")
+@RequestMapping(value = ApiDomain.HOST_PATH)
 abstract class BaseController {
     @ExceptionHandler
     @ResponseBody

@@ -24,9 +24,9 @@ class User {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
-    var id: Long? = null
+    var id: Int? = null
 
     @Column(name = "USERNAME", length = 50, unique = true)
     @NotNull
