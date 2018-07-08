@@ -1,4 +1,4 @@
-package com.example.demo.Security
+package com.example.demo.security
 
 import java.io.IOException
 import javax.servlet.FilterChain
@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import io.jsonwebtoken.ExpiredJwtException
-//import org.slf4j.Logger
-//import org.slf4j.LoggerFactory
+import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -17,11 +16,11 @@ import org.springframework.web.filter.OncePerRequestFilter
 
 class JwtAuthorizationTokenFilter(private val userDetailsService: UserDetailsService, private val jwtTokenUtil: JwtTokenUtil, private val tokenHeader: String) : OncePerRequestFilter() {
 
-//    private val logger = LoggerFactory.getLogger(this.javaClass)
+    private val loggers = LoggerFactory.getLogger(this.javaClass)
 
     @Throws(ServletException::class, IOException::class)
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
-//        logger.debug("processing authentication for '{}'", request.requestURL)
+        loggers.info("processing authentication for '{}'", request.requestURL)
 
         val requestHeader = request.getHeader(this.tokenHeader)
 
@@ -32,18 +31,18 @@ class JwtAuthorizationTokenFilter(private val userDetailsService: UserDetailsSer
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken)
             } catch (e: IllegalArgumentException) {
-//                logger.error("an error occured during getting username from token", e)
+                loggers.error("an error occured during getting username from token", e)
             } catch (e: ExpiredJwtException) {
-//                logger.warn("the token is expired and not valid anymore", e)
+                loggers.warn("the token is expired and not valid anymore", e)
             }
 
         } else {
-//            logger.warn("couldn't find bearer string, will ignore the header")
+            loggers.warn("couldn't find bearer string, will ignore the header")
         }
 
-//        logger.debug("checking authentication for user '{}'", username)
+        loggers.info("checking authentication for user '{}'", username)
         if (username != null && SecurityContextHolder.getContext().authentication == null) {
-//            logger.debug("security context was null, so authorizating user")
+            loggers.debug("security context was null, so authorizating user")
 
             // It is not compelling necessary to load the use details from the database. You could also store the information
             // in the token and read it from it. It's up to you ;)
@@ -54,7 +53,7 @@ class JwtAuthorizationTokenFilter(private val userDetailsService: UserDetailsSer
             if (jwtTokenUtil.validateToken(authToken!!, userDetails)!!) {
                 val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
                 authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
-//                logger.info("authorizated user '{}', setting security context", username)
+                loggers.info("authorizated user '{}', setting security context", username)
                 SecurityContextHolder.getContext().authentication = authentication
             }
         }

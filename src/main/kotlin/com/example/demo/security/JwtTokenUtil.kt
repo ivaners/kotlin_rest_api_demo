@@ -1,13 +1,11 @@
-package com.example.demo.Security
+package com.example.demo.security
 
 import java.io.Serializable
 import java.util.Date
 import java.util.HashMap
 import java.util.function.Function
 
-//import edu.umd.cs.findbugs.annotations.SuppressFBWarnings
 import io.jsonwebtoken.Claims
-import io.jsonwebtoken.Clock
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.impl.DefaultClock
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class JwtTokenUtil : Serializable {
-//    @SuppressFBWarnings(value = "SE_BAD_FIELD", justification = "It's okay here")
     private val clock = DefaultClock.INSTANCE
 
     @Value("\${jwt.secret}")

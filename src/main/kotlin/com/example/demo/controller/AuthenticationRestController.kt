@@ -1,12 +1,12 @@
-package com.example.demo.Controller
+package com.example.demo.controller
 
-import com.example.demo.Security.JwtAuthenticationRequest
+import com.example.demo.security.JwtAuthenticationRequest
 import java.util.Objects
 import javax.servlet.http.HttpServletRequest
 
-import com.example.demo.Security.JwtTokenUtil
-import com.example.demo.Security.JwtUser
-import com.example.demo.Security.service.JwtAuthenticationResponse
+import com.example.demo.security.JwtTokenUtil
+import com.example.demo.security.JwtUser
+import com.example.demo.security.service.JwtAuthenticationResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
