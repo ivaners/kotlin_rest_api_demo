@@ -69,3 +69,12 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (1, 2);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (3, 1);
 
+
+CREATE TABLE `test_student` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `test_student`(`id`, `name`) VALUES (1, 'tt');
+INSERT INTO `test_student`(`id`, `name`) VALUES (2, 'test');
