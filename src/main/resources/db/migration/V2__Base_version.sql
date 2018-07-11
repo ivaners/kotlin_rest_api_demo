@@ -74,7 +74,7 @@ CREATE TABLE `test_student` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `test_student`(`id`, `name`) VALUES (1, 'tt');
 INSERT INTO `test_student`(`id`, `name`) VALUES (2, 'test');

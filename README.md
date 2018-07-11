@@ -24,3 +24,11 @@ curl -H "Content-Type: application/json" -H "Authorization:Bearer eyJhbGciOiJIUz
 [{"id":1,"name":"tt"}]
 ```
 
+分页
+
+```
+curl -H "Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTUzMTc5ODgzNiwiaWF0IjoxNTMxMTk0MDM2fQ.9nGPdRF26HLODOB8QX3tDpX_gTlKnYjtWL2aUlZyENkccBfsN4DKjLF_RYpd46y4gE9P9ahiHfdMi7uZu2MZWA"  http://localhost:8080/api/v1/finAll\?size\=20\&page\=0\&sort\=id
+
+{"content":[{"id":1,"name":"tt"},{"id":2,"name":"test"}],"pageable":{"sort":{"sorted":false,"unsorted":true},"offset":0,"pageSize":20,"pageNumber":0,"paged":true,"unpaged":false},"totalPages":1,"totalElements":2,"last":true,"size":20,"number":0,"sort":{"sorted":false,"unsorted":true},"numberOfElements":2,"first":true}
+
+```
